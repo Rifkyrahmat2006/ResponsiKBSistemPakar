@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% block title %}Konsultasi{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="hero-gradient relative overflow-hidden">
+    <!-- Particles -->
+    <div class="particle" style="width:60px;height:60px;top:20%;left:10%;animation-delay:0s;"></div>
+    <div class="particle" style="width:40px;height:40px;top:60%;left:80%;animation-delay:2s;"></div>
+    <div class="particle" style="width:80px;height:80px;top:40%;left:50%;animation-delay:4s;"></div>
+    <div class="particle" style="width:30px;height:30px;top:80%;left:20%;animation-delay:1s;"></div>
+    <div class="particle" style="width:50px;height:50px;top:10%;left:70%;animation-delay:3s;"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-4 py-16 md:py-24 text-center">
+        <div class="fade-in">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/20">
+                <span class="text-xl">🌾</span>
+                <span class="text-leaf-200 text-sm font-medium">Sistem Pakar Pertanian</span>
+            </div>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-black text-white mb-4 fade-in" style="animation-delay: 0.1s;">
+            S-DIAG-<span class="text-leaf-300">HAMA</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-leaf-200 max-w-2xl mx-auto mb-8 fade-in" style="animation-delay: 0.2s;">
+            Diagnosis cepat hama & penyakit tanaman padi Anda berdasarkan gejala yang teramati di lapangan
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-leaf-300 fade-in" style="animation-delay: 0.3s;">
+            <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-leaf-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>Forward Chaining</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-leaf-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                </svg>
+                <span>10 Diagnosis</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-leaf-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                </svg>
+                <span>Mobile Friendly</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wave Divider -->
+    <div class="absolute bottom-0 left-0 right-0">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
+            <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="#f0fdf4"/>
+        </svg>
+    </div>
+</header>
+
+<!-- Consultation Form -->
+<main class="max-w-5xl mx-auto px-4 py-8 md:py-12">
+    <form id="consultForm" action="/diagnosa" method="POST">
+
+        <!-- Instructions -->
+        <div class="glass-card rounded-2xl p-6 mb-8 fade-in border border-leaf-200">
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-leaf-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6 text-leaf-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="font-bold text-leaf-900 text-lg mb-1">Cara Menggunakan</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Centang gejala-gejala yang Anda amati pada tanaman padi di sawah. 
+                        Pilih sebanyak mungkin gejala yang sesuai, lalu tekan tombol 
+                        <strong class="text-leaf-700">"Mulai Diagnosis"</strong> untuk mendapatkan hasil analisis.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Selected Counter -->
+        <div class="sticky top-0 z-30 bg-leaf-50/90 backdrop-blur-lg py-3 mb-6">
+            <div class="flex items-center justify-between glass-card rounded-xl px-5 py-3 border border-leaf-200">
+                <div class="flex items-center gap-3">
+                    <div id="counterBadge" class="counter-badge w-10 h-10 bg-gray-200 text-gray-600 rounded-xl flex items-center justify-center font-bold text-lg transition-all">
+                        0
+                    </div>
+                    <span class="text-gray-600 text-sm font-medium">gejala dipilih</span>
+                </div>
+                <button type="submit" id="submitBtn" disabled
+                    class="btn-glow bg-gray-300 text-gray-500 px-6 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 cursor-not-allowed">
+                    Mulai Diagnosis
+                </button>
+            </div>
+        </div>
+
+        <!-- Gejala Categories -->
+        <div class="space-y-6 stagger">
+            {% for key, kategori in gejala_kategori.items() %}
+            <div class="category-section glass-card rounded-2xl overflow-hidden border border-leaf-100">
+                <!-- Category Header -->
+                <div class="bg-gradient-to-r from-leaf-600 to-leaf-700 px-6 py-4">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">{{ kategori.icon }}</span>
+                        <h3 class="text-white font-bold text-lg">{{ kategori.label }}</h3>
+                        <span id="count-{{ key }}" class="ml-auto bg-white/20 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+                            0 dipilih
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Gejala List -->
+                <div class="p-4 grid gap-3 sm:grid-cols-2">
+                    {% for item in kategori.daftar %}
+                    <label class="gejala-checkbox flex items-center gap-3 p-3 rounded-xl border border-gray-200 bg-white cursor-pointer"
+                           data-category="{{ key }}" id="label-{{ item.id }}">
+                        <input type="checkbox" name="gejala" value="{{ item.id }}"
+                               onchange="toggleGejala(this)">
+                        <span class="checkbox-indicator">
+                            <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </span>
+                        <span class="text-gray-700 text-sm font-medium leading-snug">{{ item.label }}</span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Submit Button (Bottom) -->
+        <div class="mt-10 text-center fade-in">
+            <button type="submit" id="submitBtnBottom" disabled
+                class="btn-glow bg-gray-300 text-gray-500 px-10 py-4 rounded-2xl font-bold text-lg transition-all duration-300 cursor-not-allowed inline-flex items-center gap-3 shadow-lg">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                Mulai Diagnosis
+            </button>
+            <p class="text-gray-400 text-sm mt-3">Pilih minimal 1 gejala untuk memulai</p>
+        </div>
+    </form>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let selectedCount = 0;
+    const categoryCounts = {};
+
+    function toggleGejala(checkbox) {
+        const label = checkbox.closest('.gejala-checkbox');
+        const category = label.dataset.category;
+
+        if (!categoryCounts[category]) categoryCounts[category] = 0;
+
+        if (checkbox.checked) {
+            label.classList.add('checked');
+            selectedCount++;
+            categoryCounts[category]++;
+        } else {
+            label.classList.remove('checked');
+            selectedCount--;
+            categoryCounts[category]--;
+        }
+
+        updateUI();
+    }
+
+    function updateUI() {
+        // Update counter badge
+        const badge = document.getElementById('counterBadge');
+        badge.textContent = selectedCount;
+
+        if (selectedCount > 0) {
+            badge.classList.add('active');
+        } else {
+            badge.classList.remove('active');
+        }
+
+        // Update category counters
+        for (const [key, count] of Object.entries(categoryCounts)) {
+            const el = document.getElementById('count-' + key);
+            if (el) el.textContent = count + ' dipilih';
+        }
+
+        // Update submit buttons
+        const btn1 = document.getElementById('submitBtn');
+        const btn2 = document.getElementById('submitBtnBottom');
+        const enabled = selectedCount > 0;
+
+        [btn1, btn2].forEach(btn => {
+            btn.disabled = !enabled;
+            if (enabled) {
+                btn.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+                btn.classList.add('bg-leaf-600', 'hover:bg-leaf-700', 'text-white', 'shadow-lg', 'hover:shadow-xl', 'cursor-pointer');
+            } else {
+                btn.classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+                btn.classList.remove('bg-leaf-600', 'hover:bg-leaf-700', 'text-white', 'shadow-lg', 'hover:shadow-xl', 'cursor-pointer');
+            }
+        });
+    }
+</script>
+{% endblock %}

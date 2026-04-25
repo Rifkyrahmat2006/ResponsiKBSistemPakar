@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% block title %}Hasil Diagnosis{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<header class="hero-gradient relative overflow-hidden">
+    <div class="particle" style="width:50px;height:50px;top:30%;left:15%;animation-delay:0s;"></div>
+    <div class="particle" style="width:35px;height:35px;top:50%;left:75%;animation-delay:2s;"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-4 py-12 md:py-16 text-center">
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4 border border-white/20">
+            <span class="text-xl">🔬</span>
+            <span class="text-leaf-200 text-sm font-medium">Hasil Analisis</span>
+        </div>
+
+        <h1 class="text-3xl md:text-5xl font-black text-white mb-3">
+            Hasil <span class="text-leaf-300">Diagnosis</span>
+        </h1>
+
+        <p class="text-leaf-200 text-sm">
+            Berdasarkan <strong class="text-white">{{ total_dipilih }} gejala</strong> yang Anda pilih
+        </p>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0">
+        <svg viewBox="0 0 1440 60" fill="none" class="w-full">
+            <path d="M0,30 C480,60 960,0 1440,30 L1440,60 L0,60 Z" fill="#f0fdf4"/>
+        </svg>
+    </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-4 py-8 md:py-12">
+
+    {% if hasil %}
+    <!-- Summary Bar -->
+    <div class="glass-card rounded-2xl p-5 mb-8 border border-leaf-200 fade-in">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div class="w-12 h-12 bg-leaf-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-leaf-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <div>
+                <h2 class="font-bold text-leaf-900 text-lg">Ditemukan {{ hasil|length }} kemungkinan diagnosis</h2>
+                <p class="text-gray-500 text-sm">Diurutkan berdasarkan tingkat keyakinan tertinggi</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diagnosis Cards -->
+    <div class="space-y-6 stagger">
+        {% for item in hasil %}
+        <div class="glass-card rounded-2xl overflow-hidden border border-leaf-100 shadow-sm hover:shadow-lg transition-shadow duration-300">
+
+            <!-- Card Header -->
+            <div class="p-6 pb-4">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
+                    <div class="flex items-start gap-3">
+                        <!-- Badge -->
+                        {% if item.rule.kategori == 'penyakit' %}
+                        <span class="badge-shimmer inline-flex items-center gap-1.5 bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-full flex-shrink-0">
+                            🦠 Penyakit
+                        </span>
+                        {% else %}
+                        <span class="badge-shimmer inline-flex items-center gap-1.5 bg-red-100 text-red-800 text-xs font-bold px-3 py-1.5 rounded-full flex-shrink-0">
+                            🐛 Hama
+                        </span>
+                        {% endif %}
+                        <span class="bg-leaf-50 text-leaf-700 text-xs font-mono font-bold px-2 py-1.5 rounded-lg">{{ item.rule.id }}</span>
+                    </div>
+
+                    <!-- Confidence -->
+                    <div class="text-right flex-shrink-0">
+                        <div class="text-3xl font-black {% if item.confidence >= 80 %}text-leaf-600{% elif item.confidence >= 60 %}text-amber-500{% else %}text-orange-500{% endif %}">
+                            {{ item.confidence }}%
+                        </div>
+                        <div class="text-xs text-gray-400 font-medium">Tingkat Keyakinan</div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl md:text-2xl font-bold text-leaf-900 mb-1">{{ item.rule.nama }}</h3>
+                <p class="text-sm text-gray-400 italic mb-3">{{ item.rule.nama_latin }}</p>
+
+                <!-- Progress Bar -->
+                <div class="mb-4">
+                    <div class="flex justify-between text-xs text-gray-500 mb-1.5">
+                        <span>{{ item.matched_count }} dari {{ item.total_gejala }} gejala cocok</span>
+                        <span class="font-semibold">{{ item.confidence }}%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                        <div class="progress-fill h-full rounded-full" style="width: 0%;" data-width="{{ item.confidence }}%"></div>
+                    </div>
+                </div>
+
+                <p class="text-gray-600 text-sm leading-relaxed">{{ item.rule.deskripsi }}</p>
+            </div>
+
+            <!-- Matched Symptoms -->
+            <div class="px-6 py-4 bg-leaf-50/50 border-t border-leaf-100">
+                <h4 class="font-semibold text-leaf-800 text-sm mb-3 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    Gejala yang Cocok
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                    {% for gejala_id in item.rule.gejala %}
+                    {% if gejala_id in item.matched_gejala %}
+                    <span class="inline-flex items-center gap-1.5 bg-leaf-100 text-leaf-800 text-xs font-medium px-3 py-1.5 rounded-full border border-leaf-200">
+                        <svg class="w-3.5 h-3.5 text-leaf-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        {{ gejala_labels.get(gejala_id, gejala_id) }}
+                    </span>
+                    {% else %}
+                    <span class="inline-flex items-center gap-1.5 bg-gray-100 text-gray-400 text-xs font-medium px-3 py-1.5 rounded-full border border-gray-200 line-through">
+                        {{ gejala_labels.get(gejala_id, gejala_id) }}
+                    </span>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Solutions -->
+            <div class="px-6 py-5 border-t border-leaf-100">
+                <h4 class="font-semibold text-leaf-800 text-sm mb-4 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                    Rekomendasi Penanganan
+                </h4>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <!-- Organik -->
+                    <div class="bg-green-50 rounded-xl p-4 border border-green-200">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-lg">🌿</span>
+                            <span class="font-bold text-green-800 text-sm">Cara Organik</span>
+                        </div>
+                        <p class="text-green-700 text-sm leading-relaxed">{{ item.rule.solusi.organik }}</p>
+                    </div>
+                    <!-- Kimia -->
+                    <div class="bg-blue-50 rounded-xl p-4 border border-blue-200">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-lg">🧪</span>
+                            <span class="font-bold text-blue-800 text-sm">Cara Kimia</span>
+                        </div>
+                        <p class="text-blue-700 text-sm leading-relaxed">{{ item.rule.solusi.kimia }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <!-- Empty State -->
+    <div class="text-center py-16 fade-in">
+        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-5xl">🔍</span>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-3">Tidak Ditemukan Diagnosis</h2>
+        <p class="text-gray-500 max-w-md mx-auto mb-8 leading-relaxed">
+            Kombinasi gejala yang Anda pilih tidak cocok dengan data dalam basis pengetahuan kami. 
+            Coba pilih gejala yang berbeda atau lebih banyak.
+        </p>
+    </div>
+    {% endif %}
+
+    <!-- Action Buttons -->
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 fade-in">
+        <a href="/"
+           class="btn-glow inline-flex items-center gap-3 bg-leaf-600 hover:bg-leaf-700 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all shadow-lg hover:shadow-xl">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
+            Konsultasi Ulang
+        </a>
+        <a href="/admin"
+           class="inline-flex items-center gap-2 text-leaf-600 hover:text-leaf-800 font-semibold transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            Lihat Knowledge Base
+        </a>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Animate progress bars on load
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            document.querySelectorAll('.progress-fill').forEach(bar => {
+                bar.style.width = bar.dataset.width;
+            });
+        }, 300);
+    });
+</script>
+{% endblock %}

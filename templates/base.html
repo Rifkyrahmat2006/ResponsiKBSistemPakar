@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}S-DIAG-HAMA{% endblock %} — Sistem Pakar Diagnosis Hama Padi</title>
+    <meta name="description" content="Sistem pakar berbasis web untuk mendiagnosis hama dan penyakit tanaman padi secara cepat menggunakan metode Forward Chaining.">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        leaf: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                            950: '#052e16',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        /* === Base === */
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', system-ui, sans-serif; }
+
+        /* === Animated Gradient Background === */
+        .hero-gradient {
+            background: linear-gradient(-45deg, #052e16, #14532d, #166534, #15803d);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* === Floating Particles === */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.3; }
+        }
+
+        /* === Glassmorphism Card === */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* === Custom Checkbox === */
+        .gejala-checkbox {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .gejala-checkbox:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.15);
+        }
+        .gejala-checkbox.checked {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            border-color: #16a34a;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+        }
+        .gejala-checkbox input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .checkbox-indicator {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #d1d5db;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .gejala-checkbox.checked .checkbox-indicator {
+            background: #16a34a;
+            border-color: #16a34a;
+        }
+        .checkbox-indicator svg {
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.2s ease;
+        }
+        .gejala-checkbox.checked .checkbox-indicator svg {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* === Progress Bar Animation === */
+        .progress-fill {
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(90deg, #22c55e, #16a34a, #15803d);
+        }
+
+        /* === Fade In Animation === */
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stagger children */
+        .stagger > * { opacity: 0; animation: fadeInUp 0.5s ease-out forwards; }
+        .stagger > *:nth-child(1) { animation-delay: 0.1s; }
+        .stagger > *:nth-child(2) { animation-delay: 0.2s; }
+        .stagger > *:nth-child(3) { animation-delay: 0.3s; }
+        .stagger > *:nth-child(4) { animation-delay: 0.4s; }
+        .stagger > *:nth-child(5) { animation-delay: 0.5s; }
+
+        /* === Pulse Glow Button === */
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            transform: scale(0);
+            transition: transform 0.5s ease;
+        }
+        .btn-glow:hover::before {
+            transform: scale(1);
+        }
+
+        /* === Scrollbar === */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f0fdf4; }
+        ::-webkit-scrollbar-thumb { background: #86efac; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #22c55e; }
+
+        /* === Badge Shimmer === */
+        .badge-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .badge-shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* === Category Section === */
+        .category-section {
+            transition: all 0.3s ease;
+        }
+        .category-section:hover {
+            transform: translateY(-1px);
+        }
+
+        /* === Counter Badge === */
+        .counter-badge {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .counter-badge.active {
+            background: #16a34a;
+            color: white;
+            transform: scale(1.15);
+        }
+    </style>
+</head>
+<body class="bg-leaf-50 min-h-screen">
+
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="bg-leaf-950 text-leaf-300 py-8 mt-auto">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center gap-2 mb-3">
+                <span class="text-2xl">🌾</span>
+                <span class="font-bold text-white text-lg">S-DIAG-HAMA</span>
+            </div>
+            <p class="text-sm text-leaf-400">Sistem Pakar Diagnosis Hama & Penyakit Tanaman Padi</p>
+            <p class="text-xs text-leaf-500 mt-2">Menggunakan metode <em>Forward Chaining</em> &bull; Responsi Praktikum Kecerdasan Buatan</p>
+            <div class="mt-4 flex justify-center gap-4">
+                <a href="/" class="text-leaf-400 hover:text-white transition-colors text-sm">Konsultasi</a>
+                <span class="text-leaf-700">|</span>
+                <a href="/admin" class="text-leaf-400 hover:text-white transition-colors text-sm">Admin</a>
+            </div>
+        </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

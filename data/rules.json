@@ -1,0 +1,309 @@
+{
+  "gejala_kategori": {
+    "daun": {
+      "label": "Bagian Daun",
+      "icon": "🍃",
+      "daftar": [
+        {
+          "id": "daun_menguning",
+          "label": "Daun menguning"
+        },
+        {
+          "id": "bercak_belah_ketupat",
+          "label": "Bercak berbentuk belah ketupat pada daun"
+        },
+        {
+          "id": "ujung_daun_kering",
+          "label": "Ujung daun mengering"
+        },
+        {
+          "id": "tepi_daun_menggulung",
+          "label": "Tepi daun menggulung"
+        },
+        {
+          "id": "bercak_coklat_bulat",
+          "label": "Bercak coklat bulat pada daun"
+        },
+        {
+          "id": "daun_bergaris_kuning",
+          "label": "Daun bergaris kuning atau oranye"
+        },
+        {
+          "id": "daun_mengering_dari_ujung",
+          "label": "Daun mengering dari ujung ke pangkal"
+        },
+        {
+          "id": "daun_berlubang",
+          "label": "Daun berlubang-lubang"
+        },
+        {
+          "id": "daun_dimakan_tidak_beraturan",
+          "label": "Daun dimakan atau terpotong tidak beraturan"
+        }
+      ]
+    },
+    "batang": {
+      "label": "Bagian Batang",
+      "icon": "🌾",
+      "daftar": [
+        {
+          "id": "batang_kering",
+          "label": "Batang mengering"
+        },
+        {
+          "id": "batang_busuk",
+          "label": "Batang busuk dan berbau"
+        },
+        {
+          "id": "batang_mudah_patah",
+          "label": "Batang mudah patah atau rebah"
+        },
+        {
+          "id": "batang_berlubang",
+          "label": "Batang berlubang (bekas gerekan)"
+        },
+        {
+          "id": "batang_berwarna_hitam",
+          "label": "Batang berwarna kehitaman"
+        }
+      ]
+    },
+    "malai": {
+      "label": "Bagian Malai & Bulir",
+      "icon": "🌿",
+      "daftar": [
+        {
+          "id": "malai_hampa",
+          "label": "Malai atau bulir padi hampa"
+        },
+        {
+          "id": "leher_malai_patah",
+          "label": "Leher malai patah atau busuk"
+        },
+        {
+          "id": "gabah_berubah_warna",
+          "label": "Gabah berubah warna"
+        },
+        {
+          "id": "bulir_tidak_berisi",
+          "label": "Bulir padi tidak berisi penuh"
+        },
+        {
+          "id": "bau_busuk_pada_gabah",
+          "label": "Bau busuk pada gabah"
+        }
+      ]
+    },
+    "umum": {
+      "label": "Kondisi Umum Tanaman",
+      "icon": "🌱",
+      "daftar": [
+        {
+          "id": "tanaman_kerdil",
+          "label": "Pertumbuhan tanaman terhambat atau kerdil"
+        },
+        {
+          "id": "tanaman_layu",
+          "label": "Tanaman layu mendadak"
+        },
+        {
+          "id": "ada_serangga_kecil",
+          "label": "Terlihat serangga kecil pada tanaman"
+        },
+        {
+          "id": "bekas_gigitan",
+          "label": "Ada bekas gigitan pada batang atau daun"
+        },
+        {
+          "id": "lendir_pada_tanaman",
+          "label": "Ada lendir atau jejak lendir pada tanaman"
+        },
+        {
+          "id": "tanaman_rebah",
+          "label": "Tanaman rebah atau roboh"
+        },
+        {
+          "id": "bibit_terpotong",
+          "label": "Bibit atau tanaman muda terpotong dari pangkal"
+        }
+      ]
+    }
+  },
+  "rules": [
+    {
+      "id": "P01",
+      "nama": "Penyakit Blas",
+      "nama_latin": "Pyricularia oryzae",
+      "kategori": "penyakit",
+      "gejala": [
+        "bercak_belah_ketupat",
+        "ujung_daun_kering",
+        "leher_malai_patah",
+        "malai_hampa"
+      ],
+      "deskripsi": "Penyakit yang disebabkan oleh jamur Pyricularia oryzae. Menyerang daun, leher malai, dan buku batang. Sering muncul pada musim hujan dengan kelembaban tinggi.",
+      "solusi": {
+        "organik": "Gunakan varietas tahan blas, kurangi pupuk Nitrogen berlebih, atur jarak tanam optimal agar sirkulasi udara baik.",
+        "kimia": "Aplikasikan fungisida berbahan aktif trisiklazol atau isoprotiolan sesuai dosis anjuran pada label."
+      }
+    },
+    {
+      "id": "P02",
+      "nama": "Hawar Daun Bakteri (HDB)",
+      "nama_latin": "Xanthomonas oryzae pv. oryzae",
+      "kategori": "penyakit",
+      "gejala": [
+        "daun_mengering_dari_ujung",
+        "tepi_daun_menggulung",
+        "daun_menguning",
+        "tanaman_layu"
+      ],
+      "deskripsi": "Penyakit bakteri yang menyerang daun padi, menyebabkan daun mengering dari ujung dan tepi. Penyebaran cepat saat musim hujan dan angin kencang.",
+      "solusi": {
+        "organik": "Tanam varietas tahan HDB, hindari luka pada daun saat pemeliharaan, perbaiki drainase sawah.",
+        "kimia": "Gunakan bakterisida berbahan aktif streptomisin sulfat atau oksitetrasiklin sesuai anjuran."
+      }
+    },
+    {
+      "id": "P03",
+      "nama": "Penyakit Tungro",
+      "nama_latin": "Rice Tungro Virus (RTSV & RTBV)",
+      "kategori": "penyakit",
+      "gejala": [
+        "daun_menguning",
+        "daun_bergaris_kuning",
+        "tanaman_kerdil",
+        "malai_hampa",
+        "ada_serangga_kecil"
+      ],
+      "deskripsi": "Penyakit virus yang ditularkan oleh wereng hijau (Nephotettix virescens). Tanaman yang terinfeksi menunjukkan gejala menguning dan pertumbuhan terhambat.",
+      "solusi": {
+        "organik": "Tanam varietas tahan tungro, lakukan tanam serempak, musnahkan sumber inokulum dengan mencabut tanaman sakit.",
+        "kimia": "Kendalikan vektor wereng hijau dengan insektisida berbahan aktif imidakloprid atau fipronil."
+      }
+    },
+    {
+      "id": "P04",
+      "nama": "Bercak Daun Coklat",
+      "nama_latin": "Helminthosporium oryzae",
+      "kategori": "penyakit",
+      "gejala": [
+        "bercak_coklat_bulat",
+        "daun_menguning",
+        "bulir_tidak_berisi",
+        "gabah_berubah_warna"
+      ],
+      "deskripsi": "Penyakit jamur yang menyebabkan bercak coklat bulat pada daun. Sering muncul pada tanah yang kekurangan unsur hara, terutama Kalium.",
+      "solusi": {
+        "organik": "Perbaiki kesuburan tanah dengan pemupukan berimbang, terutama tambahkan pupuk Kalium (KCl). Gunakan kompos yang sudah matang.",
+        "kimia": "Aplikasikan fungisida berbahan aktif mankozeb atau propikonazol saat gejala awal muncul."
+      }
+    },
+    {
+      "id": "P05",
+      "nama": "Busuk Batang",
+      "nama_latin": "Sclerotium oryzae",
+      "kategori": "penyakit",
+      "gejala": [
+        "batang_busuk",
+        "batang_berwarna_hitam",
+        "tanaman_rebah",
+        "batang_mudah_patah",
+        "tanaman_layu"
+      ],
+      "deskripsi": "Penyakit jamur yang menyerang batang padi bagian bawah. Batang menjadi busuk, berwarna hitam, dan tanaman mudah rebah. Sering terjadi pada lahan yang tergenang lama.",
+      "solusi": {
+        "organik": "Perbaiki drainase sawah, kurangi genangan air berlebih, bersihkan sisa jerami dari musim sebelumnya.",
+        "kimia": "Gunakan fungisida berbahan aktif validamisin atau heksakonazol pada pangkal batang."
+      }
+    },
+    {
+      "id": "H01",
+      "nama": "Wereng Coklat",
+      "nama_latin": "Nilaparvata lugens",
+      "kategori": "hama",
+      "gejala": [
+        "daun_menguning",
+        "batang_kering",
+        "tanaman_kerdil",
+        "ada_serangga_kecil",
+        "tanaman_layu"
+      ],
+      "deskripsi": "Hama penghisap cairan tanaman yang sangat merusak. Serangan berat menyebabkan gejala 'hopperburn' dimana tanaman mengering dan mati. Wereng coklat juga menularkan virus kerdil.",
+      "solusi": {
+        "organik": "Tanam varietas tahan wereng, manfaatkan musuh alami (laba-laba, kumbang), hindari penggunaan insektisida berlebih yang membunuh predator alami.",
+        "kimia": "Gunakan insektisida berbahan aktif buprofezin atau imidakloprid secara selektif, hindari penyemprotan total."
+      }
+    },
+    {
+      "id": "H02",
+      "nama": "Penggerek Batang Padi",
+      "nama_latin": "Scirpophaga incertulas",
+      "kategori": "hama",
+      "gejala": [
+        "batang_berlubang",
+        "malai_hampa",
+        "batang_mudah_patah",
+        "tanaman_layu",
+        "daun_menguning"
+      ],
+      "deskripsi": "Larva ngengat yang menggerek masuk ke dalam batang padi. Menyebabkan gejala 'sundep' (pucuk mati) pada fase vegetatif dan 'beluk' (malai hampa putih) pada fase generatif.",
+      "solusi": {
+        "organik": "Kumpulkan dan musnahkan telur yang menempel di daun, gunakan perangkap lampu untuk ngengat dewasa, tanam serempak.",
+        "kimia": "Aplikasikan insektisida berbahan aktif karbofuran atau fipronil ke dalam air irigasi pada awal serangan."
+      }
+    },
+    {
+      "id": "H03",
+      "nama": "Walang Sangit",
+      "nama_latin": "Leptocorisa acuta",
+      "kategori": "hama",
+      "gejala": [
+        "bulir_tidak_berisi",
+        "gabah_berubah_warna",
+        "bau_busuk_pada_gabah",
+        "ada_serangga_kecil"
+      ],
+      "deskripsi": "Serangga penghisap cairan bulir padi yang menyerang pada fase masak susu. Menyebabkan gabah hampa, berubah warna, dan berbau busuk khas.",
+      "solusi": {
+        "organik": "Bersihkan gulma di sekitar sawah, gunakan perangkap umpan dari biji-bijian busuk, tanam serempak.",
+        "kimia": "Gunakan insektisida berbahan aktif deltametrin atau sipermetrin saat populasi tinggi pada fase masak susu."
+      }
+    },
+    {
+      "id": "H04",
+      "nama": "Tikus Sawah",
+      "nama_latin": "Rattus argentiventer",
+      "kategori": "hama",
+      "gejala": [
+        "tanaman_rebah",
+        "batang_mudah_patah",
+        "bekas_gigitan",
+        "bibit_terpotong",
+        "daun_dimakan_tidak_beraturan"
+      ],
+      "deskripsi": "Hama vertebrata yang sangat merusak pada semua fase pertumbuhan padi. Tikus memotong batang, menggerogoti bulir, dan merusak tanaman secara massal.",
+      "solusi": {
+        "organik": "Lakukan gropyokan massal, pasang TBS (Trap Barrier System), bersihkan pematang dan saluran dari semak-semak, manfaatkan burung hantu sebagai predator alami.",
+        "kimia": "Gunakan rodentisida antikoagulan (brodifakum atau bromadiolon) dalam bentuk umpan secara hati-hati dan terkontrol."
+      }
+    },
+    {
+      "id": "H05",
+      "nama": "Keong Mas",
+      "nama_latin": "Pomacea canaliculata",
+      "kategori": "hama",
+      "gejala": [
+        "bibit_terpotong",
+        "daun_dimakan_tidak_beraturan",
+        "lendir_pada_tanaman",
+        "daun_berlubang"
+      ],
+      "deskripsi": "Moluska invasif yang menyerang tanaman padi muda. Keong mas memakan daun dan batang bibit padi, menyebabkan kerusakan berat terutama pada 2-3 minggu setelah tanam.",
+      "solusi": {
+        "organik": "Kumpulkan keong dan telurnya secara manual, pasang saringan di saluran air masuk, pelihara bebek di sawah sebelum tanam.",
+        "kimia": "Gunakan moluskisida berbahan aktif niklosamida secara hati-hati dan sesuai dosis agar tidak mencemari lingkungan perairan."
+      }
+    }
+  ]
+}
