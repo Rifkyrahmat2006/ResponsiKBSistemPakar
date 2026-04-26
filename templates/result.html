@@ -9,7 +9,7 @@
 
     <div class="relative z-10 max-w-5xl mx-auto px-4 py-12 md:py-16 text-center">
         <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4 border border-white/20">
-            <span class="text-xl">🔬</span>
+            <i class="fa-solid fa-microscope text-xl text-leaf-200"></i>
             <span class="text-leaf-200 text-sm font-medium">Hasil Analisis</span>
         </div>
 
@@ -59,11 +59,11 @@
                         <!-- Badge -->
                         {% if item.rule.kategori == 'penyakit' %}
                         <span class="badge-shimmer inline-flex items-center gap-1.5 bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-full flex-shrink-0">
-                            🦠 Penyakit
+                            <i class="fa-solid fa-virus mr-1"></i>Penyakit
                         </span>
                         {% else %}
                         <span class="badge-shimmer inline-flex items-center gap-1.5 bg-red-100 text-red-800 text-xs font-bold px-3 py-1.5 rounded-full flex-shrink-0">
-                            🐛 Hama
+                            <i class="fa-solid fa-bug mr-1"></i>Hama
                         </span>
                         {% endif %}
                         <span class="bg-leaf-50 text-leaf-700 text-xs font-mono font-bold px-2 py-1.5 rounded-lg">{{ item.rule.id }}</span>
@@ -133,7 +133,7 @@
                     <!-- Organik -->
                     <div class="bg-green-50 rounded-xl p-4 border border-green-200">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="text-lg">🌿</span>
+                            <i class="fa-solid fa-leaf text-lg text-green-700"></i>
                             <span class="font-bold text-green-800 text-sm">Cara Organik</span>
                         </div>
                         <p class="text-green-700 text-sm leading-relaxed">{{ item.rule.solusi.organik }}</p>
@@ -141,7 +141,7 @@
                     <!-- Kimia -->
                     <div class="bg-blue-50 rounded-xl p-4 border border-blue-200">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="text-lg">🧪</span>
+                            <i class="fa-solid fa-flask text-lg text-blue-700"></i>
                             <span class="font-bold text-blue-800 text-sm">Cara Kimia</span>
                         </div>
                         <p class="text-blue-700 text-sm leading-relaxed">{{ item.rule.solusi.kimia }}</p>
@@ -156,7 +156,7 @@
     <!-- Empty State -->
     <div class="text-center py-16 fade-in">
         <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <span class="text-5xl">🔍</span>
+            <i class="fa-solid fa-magnifying-glass text-5xl text-gray-400"></i>
         </div>
         <h2 class="text-2xl font-bold text-gray-800 mb-3">Tidak Ditemukan Diagnosis</h2>
         <p class="text-gray-500 max-w-md mx-auto mb-8 leading-relaxed">
