@@ -2,7 +2,7 @@
   "gejala_kategori": {
     "daun": {
       "label": "Bagian Daun",
-      "icon": "🍃",
+      "icon": "<i class=\"fa-solid fa-leaf text-white\"></i>",
       "daftar": [
         {
           "id": "daun_menguning",
@@ -44,7 +44,7 @@
     },
     "batang": {
       "label": "Bagian Batang",
-      "icon": "🌾",
+      "icon": "<i class=\"fa-solid fa-wheat-awn text-white\"></i>",
       "daftar": [
         {
           "id": "batang_kering",
@@ -70,7 +70,7 @@
     },
     "malai": {
       "label": "Bagian Malai & Bulir",
-      "icon": "🌿",
+      "icon": "<i class=\"fa-solid fa-seedling text-white\"></i>",
       "daftar": [
         {
           "id": "malai_hampa",
@@ -96,7 +96,7 @@
     },
     "umum": {
       "label": "Kondisi Umum Tanaman",
-      "icon": "🌱",
+      "icon": "<i class=\"fa-solid fa-plant-wilt text-white\"></i>",
       "daftar": [
         {
           "id": "tanaman_kerdil",
